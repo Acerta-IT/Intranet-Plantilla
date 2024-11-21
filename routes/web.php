@@ -9,6 +9,7 @@ use App\Http\Controllers\DashboardController;
 Route::middleware('auth')->group(function () {
     Route::get('/', [DashboardController::class, '__invoke'])->name('dashboard');
     Route::get('/users', [UserController::class, 'index'])->name('user.index');
+    Route::get('/users/create', [UserController::class, 'create'])->name('user.create');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

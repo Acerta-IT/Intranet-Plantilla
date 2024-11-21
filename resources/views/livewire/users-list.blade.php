@@ -1,8 +1,10 @@
 <div>
     <div class="flex justify-between mb-10">
         <livewire:filter-users />
-        <livewire:create-user />
+        {{-- <livewire:create-user /> --}}
+        <x-link-button type="success" hover="success"  label="crear usuario" :href="route('user.create')" />
     </div>
+    
     <div class="flex pb-2 border-b border-gray-300">
         <div class="w-1/6">
             <p>Nombre</p>

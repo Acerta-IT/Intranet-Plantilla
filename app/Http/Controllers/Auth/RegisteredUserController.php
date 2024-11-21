@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
 use App\Enums\Status;
-use App\Enums\Department;
 use App\Enums\Privileges;
 use Illuminate\View\View;
+use App\Enums\Departments;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules;
@@ -36,7 +36,7 @@ class RegisteredUserController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'surname' => ['required', 'string', 'max:255'],
-            'department' => ['required', Rule::enum(Department::class)],
+            'department' => ['required', Rule::enum(Departments::class)],
             'privileges' => ['required', Rule::enum(Privileges::class)],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],

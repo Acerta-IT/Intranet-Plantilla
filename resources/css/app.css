@@ -48,6 +48,23 @@
 
     /* Dark */
     --color-dark: #ffffff;
+
+    [class^="bg-"] {
+        background-color: var(--color-primary);
+    }
+    
+    [class^="hover:bg-"] {
+        background-color: var(--color-primary);
+    }
+    
+    /* Ejemplo para otros estados */
+    [class^="focus:bg-"] {
+        background-color: var(--focus-color-primary);
+    }
+    
+    [class^="active:bg-"] {
+        background-color: #000000;
+    }
 }
 
 ::-webkit-scrollbar {

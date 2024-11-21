@@ -10,6 +10,13 @@ export default {
         "./node_modules/flowbite/**/*.js",
     ],
 
+    safelist: [
+        {
+            pattern:
+                /(bg|hover:bg|focus:bg|active:bg|text|hover:text|border|hover:border)-(brand|primary[1-5]?|neutral[1-5]?|secondary|success[1-5]?|warning[1-5]?|danger[1-5]?|dark)/,
+        },
+    ],
+
     theme: {
         extend: {
             fontFamily: {
@@ -52,6 +59,7 @@ export default {
                 danger1: "var(--color-danger1)",
                 // Dark
                 dark: "var(--color-dark)",
+                danger9: "#c95ea1",
             },
 
             dropShadow: {

@@ -19,7 +19,7 @@
     @livewireStyles
 </head>
 
-<body>
+<body class="">
     @if (isset($header))
         <header class="text-3xl ml-80 shadow mb-10">
             <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
@@ -29,7 +29,7 @@
     @endif
     @include('layouts.navigation')
 
-    <main class="ml-80">
+    <main class="ml-80 ">
         {{ $slot }}
     </main>
 
