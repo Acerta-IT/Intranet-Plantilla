@@ -2,9 +2,9 @@
     <div class="flex justify-between mb-10">
         <livewire:filter-users />
         {{-- <livewire:create-user /> --}}
-        <x-link-button type="success" hover="success"  label="crear usuario" :href="route('user.create')" />
+        <x-link-button hover="success" label="crear usuario" :href="route('user.create')" />
     </div>
-    
+
     <div class="flex pb-2 border-b border-gray-300">
         <div class="w-1/6">
             <p>Nombre</p>
@@ -28,7 +28,7 @@
 
 
     @forelse ($users as $user)
-        <div class="flex py-3 border-b border-gray-200">
+        <div class="flex items-center py-2 border-b border-gray-200">
             <div class="w-1/6">
                 <p>{{ $user->name }}</p>
             </div>
@@ -44,8 +44,10 @@
             <div class="w-1/6 text-center">
                 <p>{{ \App\Enums\Privileges::tryFrom($user->department)?->label() ?? 'Unknown' }}</p>
             </div>
-            <div class="w-1/6 text-center">
-
+            <div class="w-1/6 text-center flex justify-center">
+                <x-icon-button icon="edit" href="{{ route('user.edit', $user->id) }}" />
+                <x-icon-button type="primary" icon="key" href="{{ route('user.edit', $user->id) }}" />
+                <x-icon-button type="danger" icon="delete" href="{{ route('user.edit', $user->id) }}" />
             </div>
         </div>
 

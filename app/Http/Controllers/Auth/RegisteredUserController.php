@@ -31,7 +31,7 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -40,7 +40,27 @@ class RegisteredUserController extends Controller
             'privileges' => ['required', Rule::enum(Privileges::class)],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ], [
+            'name.required' => 'El nombre es obligatorio.',
+            'name.string' => 'El nombre debe ser una cadena de texto.',
+            'name.max' => 'El nombre no puede tener más de 255 caracteres.',
+            'surname.required' => 'El apellido es obligatorio.',
+            'surname.string' => 'El apellido debe ser una cadena de texto.',
+            'surname.max' => 'El apellido no puede tener más de 255 caracteres.',
+            'department.required' => 'El departamento es obligatorio.',
+            'department.enum' => 'El departamento seleccionado no es válido.',
+            'privileges.required' => 'Los privilegios son obligatorios.',
+            'privileges.enum' => 'Los privilegios seleccionados no son válidos.',
+            'email.required' => 'El correo electrónico es obligatorio.',
+            'email.string' => 'El correo electrónico debe ser una cadena de texto.',
+            'email.lowercase' => 'El correo electrónico debe estar en minúsculas.',
+            'email.email' => 'El correo electrónico debe tener un formato válido.',
+            'email.max' => 'El correo electrónico no puede tener más de 255 caracteres.',
+            'email.unique' => 'El correo electrónico ya está registrado.',
+            'password.required' => 'La contraseña es obligatoria.',
+            'password.confirmed' => 'Las contraseñas no coinciden.',
         ]);
+
 
         $user = User::create([
             'name' => $request->name,
@@ -51,10 +71,7 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        event(new Registered($user));
 
-        Auth::login($user);
-
-        return redirect(route('dashboard', absolute: false));
+        return redirect(route('user.index', absolute: false));
     }
 }

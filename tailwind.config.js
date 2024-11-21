@@ -14,6 +14,7 @@ export default {
         {
             pattern:
                 /(bg|hover:bg|focus:bg|active:bg|text|hover:text|border|hover:border)-(brand|primary[1-5]?|neutral[1-5]?|secondary|success[1-5]?|warning[1-5]?|danger[1-5]?|dark)/,
+            variants: ["hover", "focus"],
         },
     ],
 
@@ -67,6 +68,9 @@ export default {
             },
             borderWidth: {
                 6: "6px",
+            },
+            rotate: {
+                135: "135deg",
             },
         },
     },

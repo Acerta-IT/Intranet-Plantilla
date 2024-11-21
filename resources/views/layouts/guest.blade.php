@@ -20,7 +20,7 @@
     <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-acertaGray">
         <div>
             <a href="/">
-                <x-application-logo class=" h-36 fill-current text-gray-500" />
+                <x-application-logo class=" h-32 fill-current text-gray-500" />
             </a>
         </div>
 

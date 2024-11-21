@@ -21,7 +21,7 @@
 
 <body class="">
     @if (isset($header))
-        <header class="text-3xl ml-80 shadow mb-10">
+        <header class="text-3xl ml-10 shadow mb-10 font-medium">
             <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                 {{ $header }}
             </div>

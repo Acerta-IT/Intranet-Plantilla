@@ -1,25 +1,24 @@
-<aside
-    x-data="{
-        activeIndex: null,
-        init() {
-            // Configura el índice inicial basado en la ruta activa
-            if ('{{ request()->routeIs('dashboard') }}') {
-                this.activeIndex = 0;
-            } else if ('{{ request()->routeIs('user.index') }}') {
-                this.activeIndex = 0; // Mantén Gestión de Usuarios desplegado
-            } else if ('{{ request()->routeIs('other.route') }}') {
-                this.activeIndex = 2;
-            } else {
-                this.activeIndex = null; // Ninguna opción desplegada por defecto
-            }
+<aside x-data="{
+    activeIndex: null,
+    init() {
+        // Configura el índice inicial basado en la ruta activa
+        if ('{{ request()->routeIs('dashboard') }}') {
+            this.activeIndex = 0;
+        } else if ('{{ request()->routeIs('user.index') }}') {
+            this.activeIndex = 0; // Mantén Gestión de Usuarios desplegado
+        } else if ('{{ request()->routeIs('other.route') }}') {
+            this.activeIndex = 2;
+        } else {
+            this.activeIndex = null; // Ninguna opción desplegada por defecto
         }
-    }"
+    }
+}"
     class="fixed top-0 left-0 z-40 w-80 h-dvh transition-transform -translate-x-full sm:translate-x-0 bg-secondary flex flex-col justify-between text-neutral2">
 
     <!-- Contenido superior -->
     <div>
         <div class="flex justify-center mt-8">
-            <x-application-logo class="block h-24 fill-current text-gray-800 justify-center" />
+            <x-application-logo class="block h-20 fill-current text-gray-800 justify-center" />
         </div>
 
         <hr class="mx-4 border-neutral1 mt-8">
@@ -75,10 +74,9 @@
 
     <!-- Sección inferior (logout) -->
     <div class="mb-5 flex flex-col mt-10 gap-4">
-        <form method="POST" action="{{ route('logout') }}"
-            class="flex items-center px-4 py-3 w-full hover:bg-acertaLightGray text-left gap-2">
+        <form method="POST" action="{{ route('logout') }}" class="flex items-center px-4 py-3 w-full text-left gap-2">
             @csrf
-            <span class="material-symbols-outlined">
+            <span class="material-symbols-outlined hover:text-neutral4 ">
                 logout
             </span>
             <button type="submit">
