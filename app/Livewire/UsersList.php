@@ -16,11 +16,16 @@ class UsersList extends Component
 
     public $successMessage;
 
+    public $loadingUserId = null;
+
+    public $isSendingEmail = false;
 
     protected $listeners = ['filter' => 'search', 'userDeleted' => 'render'];
 
 
-
+    public function mount(){
+        $this->isSendingEmail = false;
+    }
 
     public function search($term, $department, $privilege){
         $this->term = $term;
@@ -29,30 +34,30 @@ class UsersList extends Component
     }
 
     public function resetPassword(User $user)
-    {
-        try {
-            // Crear el token de restablecimiento
-            $token = Password::broker()->createToken($user);
-    
-            // Crear la URL de restablecimiento de contraseña
-            $resetUrl = url("/reset-password/$token?email={$user->email}");
-    
-            // Intentar enviar el correo
-            Mail::to($user->email)->send(new UserResetPassword($resetUrl));
-    
-            // Si no se lanzó una excepción, asumimos que el correo se envió correctamente
-            $this->dispatch('alertDispatched', [
-                'message' => 'Correo enviado correctamente.',
-                'class' => 'toast-success',
-            ]);
-        } catch (\Exception $e) {
-    
-            $this->dispatch('alertDispatched', [
-                'message' => 'Error al enviar el correo.',
-                'class' => 'toast-danger',
-            ]);
-        }
+{
+    $this->loadingUserId = $user->id; // Establecer el ID del usuario en proceso
+    try {
+        $this->isSendingEmail = true;
+        $token = Password::broker()->createToken($user);
+        $resetUrl = url("/reset-password/$token?email={$user->email}");
+
+        Mail::to($user->email)->send(new UserResetPassword($resetUrl));
+
+        $this->dispatch('alertDispatched', [
+            'message' => 'Correo enviado correctamente.',
+            'class' => 'toast-success',
+        ]);
+    } catch (\Exception $e) {
+        $this->dispatch('alertDispatched', [
+            'message' => 'Error al enviar el correo.',
+            'class' => 'toast-danger',
+        ]);
     }
+
+    $this->loadingUserId = null; // Restablecer después de completar la acción
+    $this->isSendingEmail = false;
+}
+
     
 
     public function render()

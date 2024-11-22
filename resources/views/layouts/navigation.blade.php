@@ -40,7 +40,7 @@
             <div class="px-4 pb-2">
                 <!-- Encabezado colapsable -->
                 <div @click="activeIndex = activeIndex === 0 ? null : 0"
-                    class="flex justify-between items-center cursor-pointer text-neutral2 px-4 py-2 rounded-md hover:bg-acertaLightGray">
+                    class="flex justify-between items-center cursor-pointer text-neutral2 px-4 py-2 rounded-md hover:text-neutral4">
                     <span class="flex gap-2 items-center">
                         <span class="material-symbols-outlined">settings</span>
                         {{ __('Gestión de usuarios 1') }}
@@ -76,12 +76,15 @@
     <div class="mb-5 flex flex-col mt-10 gap-4">
         <form method="POST" action="{{ route('logout') }}" class="flex items-center px-4 py-3 w-full text-left gap-2">
             @csrf
-            <span class="material-symbols-outlined hover:text-neutral4 ">
-                logout
-            </span>
-            <button type="submit">
+
+            <button type="submit" class="flex hover:text-neutral4">
+
+                <span class="material-symbols-outlined">
+                    logout
+                </span>
                 {{ __('Logout') }}
             </button>
+
         </form>
     </div>
 </aside>

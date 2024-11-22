@@ -30,12 +30,7 @@
                     class="rounded border-gray-300 text-brand shadow-sm focus:ring-brand" name="remember">
                 <span class="ms-2 text-sm text-neutral4">{{ __('Recordar contarseña') }}</span>
             </label>
-            @if (Route::has('password.request'))
-                <a class="underline text-sm hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
-                    href="{{ route('password.request') }}">
-                    {{ __('Has olvidado la contraseña?') }}
-                </a>
-            @endif
+
         </div>
 
         <div class="flex items-center justify-end mt-4">
