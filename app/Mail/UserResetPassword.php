@@ -5,21 +5,16 @@ namespace App\Mail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
-use Illuminate\Mail\Mailables\Address;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class UserSetPassword extends Mailable
+class UserResetPassword extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $url;
-
     /**
      * Create a new message instance.
-     *
-     * @param string $url
      */
     public function __construct(string $url)
     {
@@ -32,7 +27,7 @@ class UserSetPassword extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'User Reset Password',
+            subject: 'Restablecer contraseña',
         );
     }
 
@@ -42,7 +37,7 @@ class UserSetPassword extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.userSetPassword',
+            view: 'emails.userResetPassword',
             with: [
                 'url' => $this->url, // Pasar la URL a la vista
             ]

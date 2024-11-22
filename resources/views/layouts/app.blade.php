@@ -30,7 +30,7 @@
     @endif
     @include('layouts.navigation')
 
-    <main class="ml-80 ">
+    <main class="ml-80 text-neutral4">
         {{ $slot }}
     </main>
 

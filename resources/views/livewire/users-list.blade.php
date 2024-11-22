@@ -48,7 +48,7 @@
             </div>
             <div class="w-1/6 text-center flex justify-center">
                 <x-icon-link icon="edit" href="{{ route('user.edit', $user->id) }}" />
-                <x-icon-link type="primary" icon="key" href="{{ route('user.edit', $user->id) }}" />
+                <x-icon-button icon="key" wire:click="resetPassword({{ $user->id }})" />
                 <livewire:delete-user :userId="$user->id" :key="'delete-user-' . $user->id" />
             </div>
         </div>

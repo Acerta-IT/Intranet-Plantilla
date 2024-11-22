@@ -47,10 +47,11 @@
             alt="acerta-logo">
         <p>Hola!</p>
 
-        <p>Has recibido este mensaje porque se ha creado un usuario en la Intranet con este correo. Para establecer la
+        <p>Has recibido este mensaje porque el usuario asociado a este correo ha solicitado un restablecimiento de
+            contraseña. Para establecer la
             contraseña, accede al siguiente enlace:</p>
 
-        <a class="btn" href="{{ $url }}">Establecer contraseña</a>
+        <a class="btn" href="{{ $url }}">Restablecer contraseña</a>
 
         <p>Si no reconoces esta actividad, notifica inmediatamente al administrador del sistema.</p>
     </div>

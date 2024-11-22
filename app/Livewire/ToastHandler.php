@@ -6,7 +6,7 @@ use Livewire\Component;
 
 class ToastHandler extends Component
 {
-    protected $listeners = ['userDeleted' => 'showToast'];
+    protected $listeners = ['alertDispatched' => 'showToast'];
 
     public function showToast($data)
     {

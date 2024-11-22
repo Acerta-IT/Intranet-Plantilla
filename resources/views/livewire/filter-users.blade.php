@@ -34,7 +34,7 @@
                 </select>
             </div>
 
-            <div class="flex">
+            <div class="">
                 <x-primary-button>
                     {{ __('Buscar') }}
                 </x-primary-button>

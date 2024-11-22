@@ -22,10 +22,10 @@ class DeleteUser extends Component
         $status = $user->delete();
 
         if($status){
-            $this->dispatch('userDeleted', ['message' => 'Usuario eliminado correctamente', 'class' => 'toast-success']);
+            $this->dispatch('alertDispatched', ['message' => 'Usuario eliminado correctamente', 'class' => 'toast-success']);
         }
         else{
-            $this->dispatch('userDeleted', ['message' => 'Error al eliminar el usuario', 'class' => 'toast-danger']);
+            $this->dispatch('alertDispatched', ['message' => 'Error al eliminar el usuario', 'class' => 'toast-danger']);
         }
     }
 
