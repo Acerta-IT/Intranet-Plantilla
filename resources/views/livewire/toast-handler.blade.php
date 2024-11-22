@@ -7,15 +7,19 @@
             const message = data[0].message;
             const cssClass = data[0].class;
 
-
-            Toastify({
+            const toast = Toastify({
                 text: message, // Usa la propiedad directamente
-                duration: 3000,
+                duration: 1500,
                 gravity: 'top',
                 position: 'right',
                 className: cssClass, // Clase CSS dinámica
                 stopOnFocus: true,
-            }).showToast();
+                onClick: function() { // Función que se ejecuta al hacer clic
+                    toast.hideToast(); // Oculta el toast al hacer clic
+                }
+            });
+
+            toast.showToast();
         });
     });
 </script>
