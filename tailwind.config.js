@@ -64,6 +64,7 @@ export default {
             },
 
             dropShadow: {
+                DEFAULT: "0 0 2px rgba(0, 0, 0, 0.25)",
                 md: "0 0 4px rgba(0, 0, 0, 0.25)",
             },
             borderWidth: {

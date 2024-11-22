@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
-
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -20,6 +20,7 @@
 </head>
 
 <body class="">
+    <livewire:toast-handler />
     @if (isset($header))
         <header class="text-3xl ml-10 shadow mb-10 font-medium">
             <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
@@ -34,6 +35,23 @@
     </main>
 
     @livewireScripts
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            @if (session('status'))
+                let statusData = @json(session('status')); // Convertir el array de sesión a JSON
+                console.log(statusData.message); // Depuración en consola
+                console.log(statusData.class);
+                let asd = statusData.message;
+                console.log(asd);
+
+                Livewire.dispatch('show-toast', [{
+                    message: statusData.message, // Mensaje que se mostrará en el toast
+                    class: statusData.class // Clase CSS asociada al toast
+                }]);
+            @endif
+        });
+    </script>
+
 </body>
 
 </html>

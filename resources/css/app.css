@@ -49,22 +49,21 @@
     /* Dark */
     --color-dark: #ffffff;
 
-    [class^="bg-"] {
+    /* [class^="bg-"] {
         background-color: var(--color-primary);
     }
-    
+
     [class^="hover:bg-"] {
         background-color: var(--color-primary);
     }
-    
-    /* Ejemplo para otros estados */
+
     [class^="focus:bg-"] {
         background-color: var(--focus-color-primary);
     }
-    
+
     [class^="active:bg-"] {
         background-color: #000000;
-    }
+    } */
 }
 
 ::-webkit-scrollbar {
@@ -86,4 +85,36 @@
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
+}
+
+.toast-success {
+    background: white; /* Verde para éxito */
+    color: var(--color-neutral4) !important;
+    border-left: 5px solid var(--color-success) !important;
+    border-radius: 5px;
+    padding: 20px 15px;
+
+    box-shadow: none !important;
+    filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.25));
+}
+
+.toast-warning {
+    background: white; /* Verde para éxito */
+    color: var(--color-neutral4) !important;
+    border-left: 5px solid var(--color-warning) !important;
+    border-radius: 5px;
+    padding: 20px 15px;
+
+    box-shadow: none !important;
+    filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.25));
+}
+
+.toast-danger {
+    background: white; /* Verde para éxito */
+    color: var(--color-neutral4) !important;
+    border-left: 5px solid var(--color-danger) !important;
+    border-radius: 5px;
+    padding: 20px 15px;
+    box-shadow: none !important;
+    filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.25));
 }

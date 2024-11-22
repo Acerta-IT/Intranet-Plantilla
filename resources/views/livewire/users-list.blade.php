@@ -1,4 +1,6 @@
 <div>
+    {{-- @endif --}}
+
     <div class="flex justify-between mb-10">
         <livewire:filter-users />
         {{-- <livewire:create-user /> --}}
@@ -45,9 +47,9 @@
                 <p>{{ \App\Enums\Privileges::tryFrom($user->department)?->label() ?? 'Unknown' }}</p>
             </div>
             <div class="w-1/6 text-center flex justify-center">
-                <x-icon-button icon="edit" href="{{ route('user.edit', $user->id) }}" />
-                <x-icon-button type="primary" icon="key" href="{{ route('user.edit', $user->id) }}" />
-                <x-icon-button type="danger" icon="delete" href="{{ route('user.edit', $user->id) }}" />
+                <x-icon-link icon="edit" href="{{ route('user.edit', $user->id) }}" />
+                <x-icon-link type="primary" icon="key" href="{{ route('user.edit', $user->id) }}" />
+                <livewire:delete-user :userId="$user->id" :key="'delete-user-' . $user->id" />
             </div>
         </div>
 

@@ -14,7 +14,7 @@ class FilterUsers extends Component
 
     public function readFormInput()
     {
-        $this->dispatch('asd', $this->term, $this->department, $this->privileges);
+        $this->dispatch('filter', $this->term, $this->department, $this->privileges);
     }
 
     public function render()

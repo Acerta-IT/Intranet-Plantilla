@@ -11,13 +11,21 @@ class UsersList extends Component
     public $department;
     public $privilege;
 
-    protected $listeners = ['asd' => 'search'];
+    public $successMessage;
+
+
+    protected $listeners = ['filter' => 'search', 'userDeleted' => 'render'];
+
+
+
 
     public function search($term, $department, $privilege){
         $this->term = $term;
         $this->department = $department;
         $this->privilege = $privilege;
     }
+
+
 
     public function render()
     {

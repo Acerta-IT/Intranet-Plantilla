@@ -73,8 +73,10 @@ class UserController extends Controller
             Mail::to($user->email)->send(new UserSetPassword($resetUrl));
         }
 
-
-        return redirect(route('user.index', absolute: false));
+        return redirect(route('user.index', absolute: false))->with('status', [
+            'message' => 'Usuario creado correctamente.',
+            'class' => 'toast-success',
+        ]);
     }
 
     public function edit(){
