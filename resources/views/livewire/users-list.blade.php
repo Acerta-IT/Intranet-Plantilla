@@ -70,10 +70,14 @@
 
 
                 <!-- Botón para restablecer contraseña -->
-                <div class=" flex items-center justify-center w-1/6" wire:loading.remove
+                {{--<div class=" flex items-center justify-center w-1/6" wire:loading.remove
                     wire:target="resetPassword({{ $user->id }})">
                     <x-icon-button icon="key" wire:click="resetPassword({{ $user->id }})"
                         wire:loading.attr="disabled" />
+                </div>--}}
+
+                <div class=" flex items-center justify-center w-1/6">
+                    <livewire:reset-password :userId="$user->id" :key="'reset-password-' . $user->id" />
                 </div>
 
                 <div class=" flex items-center justify-center w-1/6">

@@ -16,9 +16,9 @@ class UsersList extends Component
 
     public $successMessage;
 
-    public $loadingUserId = null;
-
-    public $isSendingEmail = false;
+//    public $loadingUserId = null;
+//
+//    public $isSendingEmail = false;
 
     protected $listeners = ['filter' => 'search', 'userDeleted' => 'render'];
 
@@ -58,7 +58,7 @@ class UsersList extends Component
     $this->isSendingEmail = false;
 }
 
-    
+
 
     public function render()
     {

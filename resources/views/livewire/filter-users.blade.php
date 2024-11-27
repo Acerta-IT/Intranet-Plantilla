@@ -10,7 +10,7 @@
                     wire:model="term" />
             </div>
             <div class="">
-                <label class="" for="term">Empresa:</label>
+                <label class="" for="term">Área:</label>
                 <select class="border-gray-300 focus:border-blue-500 focus:ring-blue-500 rounded-md shadow-sm"
                     wire:model="department">
                     <option>Seleccionar</option>
