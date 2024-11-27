@@ -33,7 +33,7 @@
                         @foreach (\App\Enums\Departments::cases() as $department)
                             <option value="{{ $department->value }}"
                                 {{ old('department', $user->department) == $department->value ? 'selected' : '' }}>
-                                {{ $department->name }}
+                                {{ $department->label() }}
                             </option>
                         @endforeach
                     </select>
