@@ -13,19 +13,21 @@
         }
     }
 }"
-    class="fixed top-0 left-0 z-40 w-80 h-dvh transition-transform -translate-x-full sm:translate-x-0 bg-secondary flex flex-col justify-between text-neutral2 shadow-md">
+       class="fixed top-0 left-0 z-40 w-80 h-dvh transition-transform -translate-x-full sm:translate-x-0 bg-secondary flex flex-col justify-between text-neutral2 shadow-md">
 
     <!-- Contenido superior -->
     <div>
         <div class="flex justify-center mt-8">
-            <x-application-logo class="block h-20 fill-current text-gray-800 justify-center" />
+            <a href="{{ route('dashboard') }}">
+                <x-application-logo class="block h-20 fill-current text-gray-800 justify-center"/>
+            </a>
         </div>
 
         <hr class="mx-4 border-neutral1 mt-8">
         <div class="flex gap-4 ml-4 my-4 items-center">
             <div>
                 <img src="{{ asset('user placeholder.png') }}" alt="Logo"
-                    class="w-12 h-12 rounded-full border-2 border-neutral1">
+                     class="w-12 h-12 rounded-full border-2 border-neutral1">
             </div>
             <div>
                 <p><span class="text-neutral">{{ auth()->user()->name . ' ' . auth()->user()->surname }}</span></p>
@@ -40,21 +42,21 @@
             <div class="px-4 pb-2">
                 <!-- Encabezado colapsable -->
                 <div @click="activeIndex = activeIndex === 0 ? null : 0"
-                    class="flex justify-between items-center cursor-pointer text-neutral2 px-4 py-2 rounded-md hover:text-neutral4">
+                     class="flex justify-between items-center cursor-pointer text-neutral2 px-4 py-2 rounded-md hover:text-neutral4">
                     <span class="flex gap-2 items-center">
                         <span class="material-symbols-outlined">settings</span>
                         {{ __('Gestión de usuarios 1') }}
                     </span>
                     <span class="material-symbols-outlined"
-                        x-text="activeIndex === 0 ? 'expand_more' : 'chevron_right'"></span>
+                          x-text="activeIndex === 0 ? 'expand_more' : 'chevron_right'"></span>
                 </div>
 
                 <!-- Subopciones con animación -->
                 <div x-show="activeIndex === 0" x-transition:enter="transition-all linear duration-75"
-                    x-transition:enter-start="opacity-0 max-h-0" x-transition:enter-end="opacity-100 max-h-screen"
-                    x-transition:leave="transition-all linear duration-75"
-                    x-transition:leave-start="opacity-100 max-h-screen" x-transition:leave-end="opacity-0 max-h-0"
-                    class="overflow-hidden">
+                     x-transition:enter-start="opacity-0 max-h-0" x-transition:enter-end="opacity-100 max-h-screen"
+                     x-transition:leave="transition-all linear duration-75"
+                     x-transition:leave-start="opacity-100 max-h-screen" x-transition:leave-end="opacity-0 max-h-0"
+                     class="overflow-hidden">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         <x-slot name="icon">timer</x-slot>
                         {{ __('Dashboard') }}
