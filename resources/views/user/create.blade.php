@@ -66,7 +66,7 @@
                 <x-input-error :messages="$errors->get('email')" class="mt-2" />
             </div>
 
-            <div class="flex gap-8 mb-4"><!-- Password -->
+            <div class="flex gap-8 mb-2"><!-- Password -->
                 <div class="mt-4 w-1/2">
                     <x-input-label for="password" :value="__('Contraseña')" />
 
@@ -85,9 +85,11 @@
 
                     <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                 </div>
-            </div>
 
-            <div class="flex items-center mt-8">
+            </div>
+            <p class="text-sm text-neutral2 mt-0 pt-0">Si la contraseña se deja vacía, se enviará un correo de restablecimiento.</p>
+
+            <div class="flex items-center mt-6">
                 <x-primary-button class=" w-46">
                     {{ __('Crear usuario') }}
                 </x-primary-button>
