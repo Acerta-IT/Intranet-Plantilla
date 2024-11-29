@@ -33,7 +33,7 @@ class UserController extends Controller
             'surname' => ['required', 'string', 'max:255'],
             'department' => ['required', Rule::enum(Departments::class)],
             'privileges' => ['required', Rule::enum(Privileges::class)],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['nullable', 'confirmed', PasswordRules::defaults()],
         ], [
             'name.required' => 'El nombre es obligatorio.',
@@ -79,12 +79,14 @@ class UserController extends Controller
         ]);
     }
 
-    public function edit(User $user){
+    public function edit(User $user)
+    {
         return view('user.edit', ['user' => $user]);
     }
 
-    public function update(Request $request, User $user){
-    
+    public function update(Request $request, User $user)
+    {
+
 
         $request->validate([
             'name' => ['required', 'string', 'max:255'],

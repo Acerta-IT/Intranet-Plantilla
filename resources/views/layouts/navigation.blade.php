@@ -1,16 +1,24 @@
 <aside x-data="{
-    activeIndex: null,
+    activeIndexes: [], // Cambiar de un solo índice a un array
     init() {
-        // Configura el índice inicial basado en la ruta activa
-        if ('{{ request()->routeIs('dashboard') }}') {
-            this.activeIndex = 0;
-        } else if ('{{ request()->routeIs('user.index') }}') {
-            this.activeIndex = 0; // Mantén Gestión de Usuarios desplegado
-        } else if ('{{ request()->routeIs('other.route') }}') {
-            this.activeIndex = 2;
+        // Recuperar el estado guardado desde localStorage
+        const savedIndexes = JSON.parse(localStorage.getItem('activeIndexes'));
+        this.activeIndexes = Array.isArray(savedIndexes) ? savedIndexes : [];
+    },
+    toggle(index) {
+        // Si el índice ya está activo, quítalo; de lo contrario, agrégalo
+        if (this.activeIndexes.includes(index)) {
+            this.activeIndexes = this.activeIndexes.filter(i => i !== index);
         } else {
-            this.activeIndex = null; // Ninguna opción desplegada por defecto
+            this.activeIndexes.push(index);
         }
+
+        // Guardar el estado en localStorage
+        localStorage.setItem('activeIndexes', JSON.stringify(this.activeIndexes));
+    },
+    isActive(index) {
+        // Verifica si el índice está en el array de activos
+        return this.activeIndexes.includes(index);
     }
 }"
        class="fixed top-0 left-0 z-40 w-80 h-dvh transition-transform -translate-x-full sm:translate-x-0 bg-secondary flex flex-col justify-between text-neutral2 shadow-md">
@@ -41,18 +49,18 @@
             <!-- Opción 1 -->
             <div class="px-4 pb-2">
                 <!-- Encabezado colapsable -->
-                <div @click="activeIndex = activeIndex === 0 ? null : 0"
+                <div @click="toggle(0)"
                      class="flex justify-between items-center cursor-pointer text-neutral2 px-4 py-2 rounded-md hover:text-neutral4">
                     <span class="flex gap-2 items-center">
                         <span class="material-symbols-outlined">settings</span>
-                        {{ __('Gestión de usuarios 1') }}
+                        Gestión de usuarios
                     </span>
                     <span class="material-symbols-outlined"
-                          x-text="activeIndex === 0 ? 'expand_more' : 'chevron_right'"></span>
+                          x-text="isActive(0) ? 'expand_more' : 'chevron_right'"></span>
                 </div>
 
                 <!-- Subopciones con animación -->
-                <div x-show="activeIndex === 0" x-transition:enter="transition-all linear duration-75"
+                <div x-show="isActive(0)" x-transition:enter="transition-all linear duration-75"
                      x-transition:enter-start="opacity-0 max-h-0" x-transition:enter-end="opacity-100 max-h-screen"
                      x-transition:leave="transition-all linear duration-75"
                      x-transition:leave-start="opacity-100 max-h-screen" x-transition:leave-end="opacity-0 max-h-0"
@@ -68,10 +76,9 @@
                     </x-nav-link>
                 </div>
             </div>
-
-
-            <!-- Agrega más opciones aquí -->
         </div>
+
+
     </div>
 
     <!-- Sección inferior (logout) -->
@@ -80,13 +87,11 @@
             @csrf
 
             <button type="submit" class="flex hover:text-neutral4">
-
                 <span class="material-symbols-outlined">
                     logout
                 </span>
                 {{ __('Logout') }}
             </button>
-
         </form>
     </div>
 </aside>
