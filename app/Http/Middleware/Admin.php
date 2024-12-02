@@ -15,7 +15,7 @@ class Admin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (auth()->check() && auth()->user()->privileges === 1) {
+        if (auth()->check() && auth()->user()->rol === 1) {
             return $next($request);
         }
         return redirect('/');

@@ -1,3 +1,21 @@
+{{--
+    Component: nav-link
+    Description: Generates a styled navigation link with support for active states, icons, and nesting levels.
+
+    Props:
+    - `active` (boolean): Indicates if the link is active. Adds specific styles when true. Default: `false`.
+    - `level` (integer): Determines the nesting level of the link.
+        - `1`: Top level option (`px-4`).
+        - `2`: Inside a dropdown (`px-6`).
+      Default: `1`.
+    - `icon` (string): The name of the Material Symbols icon to display alongside the link. Default: `''`.
+
+    Usage Example:
+    <x-nav-link :active="request()->routeIs('dashboard')" level="2" icon="settings">
+        Dashboard
+    </x-nav-link>
+--}}
+
 @props(['active', 'level' => 1, 'icon' => ''])
 
 @php
@@ -11,11 +29,17 @@
     $classes .= $paddingClass;
 @endphp
 
-<div class="p-1">
-    <a {{ $attributes->merge(['class' => $classes]) }}>
+@if($level === 1)
+    <div class="px-2 pb-2">
+        @endif
+        <div class="p-1">
+            <a {{ $attributes->merge(['class' => $classes]) }}>
         <span class="material-symbols-outlined text-xl">
             {{ $icon ?? '' }}
         </span>
-        {{ $slot }}
-    </a>
-</div>
+                {{ $slot }}
+            </a>
+        </div>
+        @if($level === 1)
+    </div>
+@endif

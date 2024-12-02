@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Enums\Rol;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -19,9 +20,9 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'surname',	
+        'surname',
         'department',
-        'privileges',
+        'rol',
         'status',
         'email',
         'password',
@@ -49,4 +50,10 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function getRolEnumAttribute(): ?Rol
+    {
+        return Rol::tryFrom($this->rol);
+    }
+
 }

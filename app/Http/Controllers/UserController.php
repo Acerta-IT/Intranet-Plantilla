@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Models\User;
-use App\Enums\Privileges;
+use App\Enums\Rol;
 use App\Enums\Departments;
 use Illuminate\Http\Request;
 use App\Mail\UserSetPassword;
@@ -32,7 +32,7 @@ class UserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'surname' => ['required', 'string', 'max:255'],
             'department' => ['required', Rule::enum(Departments::class)],
-            'privileges' => ['required', Rule::enum(Privileges::class)],
+            'rol' => ['required', Rule::enum(Rol::class)],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['nullable', 'confirmed', PasswordRules::defaults()],
         ], [
@@ -44,8 +44,8 @@ class UserController extends Controller
             'surname.max' => 'El apellido no puede tener más de 255 caracteres.',
             'department.required' => 'El departamento es obligatorio.',
             'department.enum' => 'El departamento seleccionado no es válido.',
-            'privileges.required' => 'El perfil es obligatorio.',
-            'privileges.enum' => 'El perfil seleccionado no es válido.',
+            'rol.required' => 'El perfil es obligatorio.',
+            'rol.enum' => 'El perfil seleccionado no es válido.',
             'email.required' => 'El correo electrónico es obligatorio.',
             'email.string' => 'El correo electrónico debe ser una cadena de texto.',
             'email.lowercase' => 'El correo electrónico debe estar en minúsculas.',
@@ -58,7 +58,7 @@ class UserController extends Controller
             'name' => $request->name,
             'surname' => $request->surname,
             'department' => $request->department,
-            'privileges' => $request->privileges,
+            'rol' => $request->rol,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
@@ -92,7 +92,7 @@ class UserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'surname' => ['required', 'string', 'max:255'],
             'department' => ['required', Rule::enum(Departments::class)],
-            'privileges' => ['required', Rule::enum(Privileges::class)],
+            'rol' => ['required', Rule::enum(Rol::class)],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
             'password' => ['nullable', 'confirmed', PasswordRules::defaults()],
         ], [
@@ -104,8 +104,8 @@ class UserController extends Controller
             'surname.max' => 'El apellido no puede tener más de 255 caracteres.',
             'department.required' => 'El departamento es obligatorio.',
             'department.enum' => 'El departamento seleccionado no es válido.',
-            'privileges.required' => 'El perfil es obligatorio.',
-            'privileges.enum' => 'El perfil seleccionado no es válido.',
+            'rol.required' => 'El perfil es obligatorio.',
+            'rol.enum' => 'El perfil seleccionado no es válido.',
             'email.required' => 'El correo electrónico es obligatorio.',
             'email.string' => 'El correo electrónico debe ser una cadena de texto.',
             'email.lowercase' => 'El correo electrónico debe estar en minúsculas.',
@@ -118,7 +118,7 @@ class UserController extends Controller
             'name' => $request->name,
             'surname' => $request->surname,
             'department' => $request->department,
-            'privileges' => $request->privileges,
+            'rol' => $request->rol,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);

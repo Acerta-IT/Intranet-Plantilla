@@ -1,29 +1,29 @@
 <aside x-data="{
-    activeIndexes: [], // Cambiar de un solo índice a un array
+    activeIndexes: [],
     init() {
-        // Recuperar el estado guardado desde localStorage
+        // Get saved state from localStorage
         const savedIndexes = JSON.parse(localStorage.getItem('activeIndexes'));
         this.activeIndexes = Array.isArray(savedIndexes) ? savedIndexes : [];
     },
     toggle(index) {
-        // Si el índice ya está activo, quítalo; de lo contrario, agrégalo
+        // If index is active, toggle it; otherwise, add it
         if (this.activeIndexes.includes(index)) {
             this.activeIndexes = this.activeIndexes.filter(i => i !== index);
         } else {
             this.activeIndexes.push(index);
         }
 
-        // Guardar el estado en localStorage
+        // Save state to localStorage
         localStorage.setItem('activeIndexes', JSON.stringify(this.activeIndexes));
     },
     isActive(index) {
-        // Verifica si el índice está en el array de activos
+        // Verify if index is in active array
         return this.activeIndexes.includes(index);
     }
 }"
        class="top-0 left-0 z-40 w-80 h-dvh transition-transform -translate-x-full sm:translate-x-0 bg-secondary flex flex-col justify-between text-neutral2 shadow-md">
 
-    <!-- Contenido superior -->
+    <!-- Top content -->
     <div>
         <div class="flex justify-center mt-8">
             <a href="{{ route('dashboard') }}">
@@ -46,69 +46,31 @@
 
         <!-- Contenedor con scroll solo para los x-nav-link -->
         <div class="flex flex-col overflow-y-auto max-h-[60vh] select-none">
-            <div class="px-2 pb-2">
-                <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                    <x-slot name="icon">dashboard</x-slot>
-                    Dashboard
-                </x-nav-link>
-            </div>
+            <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                <x-slot name="icon">dashboard</x-slot>
+                Panel de control
+            </x-nav-link>
 
             <!-- Dropdown 1 -->
-            @if(auth()->user()->privileges === 1)
-                <div class="px-4 pb-2">
-                    <!-- Encabezado colapsable -->
-                    <div @click="toggle(0)"
-                         class="flex justify-between items-center cursor-pointer text-neutral2 px-4 py-2 rounded-md hover:text-neutral4">
-                    <span class="flex gap-2 items-center">
-                        <span class="material-symbols-outlined">settings</span>
-                        Gestión de usuarios
-                    </span>
-                        <span class="material-symbols-outlined"
-                              x-text="isActive(0) ? 'expand_more' : 'chevron_right'"></span>
-                    </div>
-
-
-                    <div x-show="isActive(0)" x-transition:enter="transition-all linear duration-75"
-                         x-transition:enter-start="opacity-0 max-h-0" x-transition:enter-end="opacity-100 max-h-screen"
-                         x-transition:leave="transition-all linear duration-75"
-                         x-transition:leave-start="opacity-100 max-h-screen" x-transition:leave-end="opacity-0 max-h-0"
-                         class="overflow-hidden">
-
-
-                        <x-nav-link :href="route('user.index')" :active="request()->routeIs('user.index')" level="2">
-                            <x-slot name="icon">group</x-slot>
-                            Usuarios
-                        </x-nav-link>
-                    </div>
-                </div>
+            @if(auth()->user()->rol_enum === \App\Enums\rol::Admin)
+                <x-nav-dropdown dropDownId=0 icon="settings" title="Gestón de usuarios">
+                    <x-nav-link :href="route('user.index')" :active="request()->routeIs('user.index')" level="2">
+                        <x-slot name="icon">group</x-slot>
+                        Usuarios
+                    </x-nav-link>
+                </x-nav-dropdown>
             @endif
 
             <!-- Dropdown 2 -->
-            <div class="px-4 pb-2">
-                <!-- Encabezado colapsable -->
-                <div @click="toggle(1)"
-                     class="flex justify-between items-center cursor-pointer text-neutral2 px-4 py-2 rounded-md hover:text-neutral4">
-                    <span class="flex gap-2 items-center">
-                        <span class="material-symbols-outlined">work</span>
-                       Laboral
-                    </span>
-                    <span class="material-symbols-outlined"
-                          x-text="isActive(1) ? 'expand_more' : 'chevron_right'"></span>
-                </div>
+            <x-nav-dropdown dropDownId=1 icon="work" title="Laboral">
+                <x-nav-link :href="route('clocking.index')" :active="request()->routeIs('clocking.index')"
+                            level="2">
+                    <x-slot name="icon">timer</x-slot>
+                    Fichaje
+                </x-nav-link>
+            </x-nav-dropdown>
 
-                <!-- Subopciones con animación -->
-                <div x-show="isActive(1)" x-transition:enter="transition-all linear duration-75"
-                     x-transition:enter-start="opacity-0 max-h-0" x-transition:enter-end="opacity-100 max-h-screen"
-                     x-transition:leave="transition-all linear duration-75"
-                     x-transition:leave-start="opacity-100 max-h-screen" x-transition:leave-end="opacity-0 max-h-0"
-                     class="overflow-hidden">
-                    <x-nav-link :href="route('clocking.index')" :active="request()->routeIs('clocking.index')"
-                                level="2">
-                        <x-slot name="icon">timer</x-slot>
-                        Fichaje
-                    </x-nav-link>
-                </div>
-            </div>
+
         </div>
 
 
