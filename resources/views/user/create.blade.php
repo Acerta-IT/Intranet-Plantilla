@@ -40,18 +40,18 @@
                 </div>
 
                 <div class="mt-4 w-1/2 mb-4">
-                    <x-input-label for="rol" :value="__('Perfil')"/>
-                    <select name="rol" id="rol"
+                    <x-input-label for="role" :value="__('Perfil')"/>
+                    <select name="role" id="role"
                             class="block mt-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
                         <option value="" disabled selected>{{ __('Seleccionar permisos') }}</option>
-                        @foreach (\App\Enums\Rol::cases() as $rol)
-                            <option value="{{ $rol->value }}"
-                                {{ old('rol') == $rol->value ? 'selected' : '' }}>
-                                {{ $rol->label() }}
+                        @foreach (\App\Enums\Role::cases() as $role)
+                            <option value="{{ $role->value }}"
+                                {{ old('role') == $role->value ? 'selected' : '' }}>
+                                {{ $role->label() }}
                             </option>
                         @endforeach
                     </select>
-                    <x-input-error :messages="$errors->get('rol')" class="mt-2"/>
+                    <x-input-error :messages="$errors->get('role')" class="mt-2"/>
                 </div>
             </div>
 

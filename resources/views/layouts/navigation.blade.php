@@ -48,11 +48,11 @@
         <div class="flex flex-col overflow-y-auto max-h-[60vh] select-none">
             <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 <x-slot name="icon">dashboard</x-slot>
-                Panel de control
+                Dashboard
             </x-nav-link>
 
             <!-- Dropdown 1 -->
-            @if(auth()->user()->rol_enum === \App\Enums\rol::Admin)
+            @if(auth()->user()->role_enum === \App\enums\Role::Admin)
                 <x-nav-dropdown dropDownId=0 icon="settings" title="Gestón de usuarios">
                     <x-nav-link :href="route('user.index')" :active="request()->routeIs('user.index')" level="2">
                         <x-slot name="icon">group</x-slot>

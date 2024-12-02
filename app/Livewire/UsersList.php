@@ -12,7 +12,7 @@ class UsersList extends Component
 {
     public $term;
     public $department;
-    public $rol;
+    public $role;
 
     public $successMessage;
 
@@ -28,11 +28,11 @@ class UsersList extends Component
         $this->isSendingEmail = false;
     }
 
-    public function search($term, $department, $rol)
+    public function search($term, $department, $role)
     {
         $this->term = $term;
         $this->department = $department;
-        $this->rol = $rol;
+        $this->role = $role;
     }
 
     public function resetPassword(User $user)
@@ -74,10 +74,10 @@ class UsersList extends Component
                     $query->where('department', $this->department);
                 }
             })
-            ->when($this->rol, function ($query) {
+            ->when($this->role, function ($query) {
                 // Verificar si se ha seleccionado un permiso
-                if ($this->rol !== 'Seleccionar') {
-                    $query->where('rol', $this->rol);
+                if ($this->role !== 'Seleccionar') {
+                    $query->where('role', $this->role);
                 }
             })
             ->orderBy('name')

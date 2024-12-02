@@ -2,7 +2,7 @@
 
 namespace App\Enums;
 
-enum Rol: int
+enum Role: int
 {
     case Admin = 1; // Has access to all the application
     case Management = 2; // Has acces to all the areas and can manage users

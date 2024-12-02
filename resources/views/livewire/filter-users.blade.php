@@ -21,14 +21,14 @@
                 </select>
             </div>
             <div class="">
-                <label class="" for="term">Permisos:</label>
+                <label class="" for="term">Perfil:</label>
                 <select class="border-gray-300 focus:border-blue-500 focus:ring-blue-500 rounded-md shadow-sm"
                         wire:model="rol">
                     <option>Seleccionar</option>
 
-                    @foreach ($userRol as $rol)
-                        <option value="{{ $rol->value }}">
-                            {{ \App\Enums\Rol::tryFrom($rol->value)?->label() ?? 'Unknown' }}</option>
+                    @foreach ($userRol as $role)
+                        <option value="{{ $role->value }}">
+                            {{ \App\Enums\Role::tryFrom($role->value)?->label() ?? 'Unknown' }}</option>
                     @endforeach
                 </select>
             </div>

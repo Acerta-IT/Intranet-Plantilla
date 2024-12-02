@@ -46,10 +46,10 @@
                     <select name="rol" id="rol"
                             class="block mt-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
                         <option value="" disabled selected>{{ __('Seleccionar permisos') }}</option>
-                        @foreach (\App\Enums\Rol::cases() as $rol)
-                            <option value="{{ $rol->value }}"
-                                {{ old('rol', $user->rol) == $rol->value ? 'selected' : '' }}>
-                                {{ $rol->label() }}
+                        @foreach (\App\Enums\Role::cases() as $role)
+                            <option value="{{ $role->value }}"
+                                {{ old('role', $user->role) == $role->value ? 'selected' : '' }}>
+                                {{ $role->label() }}
                             </option>
                         @endforeach
                     </select>
