@@ -23,12 +23,12 @@
             <div class="">
                 <label class="" for="term">Permisos:</label>
                 <select class="border-gray-300 focus:border-blue-500 focus:ring-blue-500 rounded-md shadow-sm"
-                        wire:model="privileges">
+                        wire:model="rol">
                     <option>Seleccionar</option>
 
-                    @foreach ($userPrivileges as $privilege)
-                        <option value="{{ $privilege->value }}">
-                            {{ \App\Enums\Privileges::tryFrom($privilege->value)?->label() ?? 'Unknown' }}</option>
+                    @foreach ($userRol as $rol)
+                        <option value="{{ $rol->value }}">
+                            {{ \App\Enums\Rol::tryFrom($rol->value)?->label() ?? 'Unknown' }}</option>
                     @endforeach
                 </select>
             </div>

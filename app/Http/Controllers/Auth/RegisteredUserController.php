@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
 use App\Enums\Status;
-use App\Enums\Privileges;
+use App\Enums\Rol;
 use Illuminate\View\View;
 use App\Enums\Departments;
 use Illuminate\Http\Request;
@@ -37,8 +37,8 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'surname' => ['required', 'string', 'max:255'],
             'department' => ['required', Rule::enum(Departments::class)],
-            'privileges' => ['required', Rule::enum(Privileges::class)],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'rol' => ['required', Rule::enum(Rol::class)],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ], [
             'name.required' => 'El nombre es obligatorio.',
@@ -49,8 +49,8 @@ class RegisteredUserController extends Controller
             'surname.max' => 'El apellido no puede tener más de 255 caracteres.',
             'department.required' => 'El departamento es obligatorio.',
             'department.enum' => 'El departamento seleccionado no es válido.',
-            'privileges.required' => 'Los privilegios son obligatorios.',
-            'privileges.enum' => 'Los privilegios seleccionados no son válidos.',
+            'rol.required' => 'El perfil son obligatorios.',
+            'rol.enum' => 'El perfil seleccionados no son válidos.',
             'email.required' => 'El correo electrónico es obligatorio.',
             'email.string' => 'El correo electrónico debe ser una cadena de texto.',
             'email.lowercase' => 'El correo electrónico debe estar en minúsculas.',
@@ -66,7 +66,7 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'surname' => $request->surname,
             'department' => $request->department,
-            'privileges' => $request->privileges,
+            'rol' => $request->rol,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
