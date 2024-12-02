@@ -61,16 +61,6 @@
                 </x-nav-dropdown>
             @endif
 
-            <!-- Dropdown 2 -->
-            <x-nav-dropdown dropDownId=1 icon="work" title="Laboral">
-                <x-nav-link :href="route('clocking.index')" :active="request()->routeIs('clocking.index')"
-                            level="2">
-                    <x-slot name="icon">settings</x-slot>
-                    Fichaje
-                </x-nav-link>
-            </x-nav-dropdown>
-
-
         </div>
 
     </div>
