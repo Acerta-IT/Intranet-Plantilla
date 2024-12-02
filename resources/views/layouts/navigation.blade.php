@@ -73,7 +73,6 @@
 
         </div>
 
-
     </div>
 
     <!-- Sección inferior (logout) -->
