@@ -8,6 +8,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Middleware\Admin;
 
 
+
 Route::middleware('auth')->group(function () {
     Route::get('/', [DashboardController::class, '__invoke'])->name('dashboard');
 
@@ -19,10 +20,20 @@ Route::middleware('auth')->group(function () {
         Route::post('/user/edit/{user}', [UserController::class, 'update'])->name('user.update');
         Route::post('/user/create', [UserController::class, 'store']);
     });
+
+    // Managing 404 errors
+    Route::fallback(function() {
+        return redirect()->route('dashboard')->with('status', [
+            'message' => 'Error 404: sitio no encontrado',
+            'class' => 'toast-danger'
+        ]);
+    });
+
+    
 //    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
 //    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
 //    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::get('/clocking', [ClockingController::class, 'index'])->name('clocking.index');
+
 });
 
 require __DIR__ . '/auth.php';

@@ -1,9 +1,8 @@
 <div>
-    {{-- @endif --}}
 
     <div class=" 2xl:flex justify-between mb-20 2xl:mb-10">
         <livewire:filter-users/>
-        {{-- <livewire:create-user /> --}}
+
         <x-link-button hover="success" label="crear usuario" :href="route('user.create')"/>
     </div>
 
