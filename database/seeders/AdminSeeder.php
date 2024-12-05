@@ -17,7 +17,7 @@ class AdminSeeder extends Seeder
     public function run(): void
     {
         User::updateOrCreate(
-            ['email' => 'admin'],
+            ['email' => 'admin@acerta-intranet.com'],
             [
                 'name' => 'Admin',
                 'surname' => 'User',
