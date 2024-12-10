@@ -30,7 +30,7 @@
 @endphp
 
 @if($level === 1)
-    <div class="px-2 pb-2">
+    <div class="px-2">
         @endif
         <div class="p-1">
             <a {{ $attributes->merge(['class' => $classes]) }}>

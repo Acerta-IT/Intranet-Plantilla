@@ -23,7 +23,7 @@ class AdminSeeder extends Seeder
                 'surname' => 'User',
                 'department' => Departments::IT->value,
                 'role' => Role::Admin->value,
-                'password' => Hash::make('admin'),
+                'password' => Hash::make('Qwerty1234!'),
             ]
         );
     }

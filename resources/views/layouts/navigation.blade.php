@@ -21,7 +21,7 @@
         return this.activeIndexes.includes(index);
     }
 }"
-       class="top-0 left-0 z-40 w-80 h-dvh transition-transform -translate-x-full sm:translate-x-0 bg-secondary flex flex-col justify-between text-neutral2 shadow-md">
+       class="fixed top-0 left-0 z-40 w-80 h-dvh transition-transform -translate-x-full sm:translate-x-0 bg-secondary flex flex-col justify-between text-neutral2 shadow-md">
 
     <!-- Top content -->
     <div>
@@ -53,7 +53,7 @@
 
             <!-- Dropdown 1 -->
             @if(auth()->user()->role_enum === \App\enums\Role::Admin)
-                <x-nav-dropdown dropDownId=0 icon="settings" title="Gestón de usuarios">
+                <x-nav-dropdown dropDownId=0 icon="manage_accounts" title="Gestón de usuarios">
                     <x-nav-link :href="route('user.index')" :active="request()->routeIs('user.index')" level="2">
                         <x-slot name="icon">group</x-slot>
                         Usuarios
