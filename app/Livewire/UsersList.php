@@ -31,6 +31,7 @@ class UsersList extends Component
         $this->role = $role;
     }
 
+
     public function render()
     {
         $users = User::when($this->term, function ($query) {

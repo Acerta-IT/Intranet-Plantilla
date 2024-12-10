@@ -37,6 +37,8 @@ class ResetPassword extends Component
                 'message' => 'Correo enviado correctamente.',
                 'class' => 'toast-success',
             ]);
+
+            $this->dispatch('userDeleted');
         } catch (\Exception $e) {
             $this->dispatch('alertDispatched', [
                 'message' => 'Error al enviar el correo.',

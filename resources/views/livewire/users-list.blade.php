@@ -67,20 +67,12 @@
                     <span class="sr-only">Loading...</span>
                 </div>
 
-
-                <!-- Botón para restablecer contraseña -->
-                {{--<div class=" flex items-center justify-center w-1/6" wire:loading.remove
-                    wire:target="resetPassword({{ $user->id }})">
-                    <x-icon-button icon="key" wire:click="resetPassword({{ $user->id }})"
-                        wire:loading.attr="disabled" />
-                </div>--}}
-
                 <div class=" flex items-center justify-center w-1/6">
-                    <livewire:reset-password :userId="$user->id" :key="'reset-password-' . $user->id"/>
+                    <livewire:reset-password :userId="$user->id" :key="'reset-password-' . uniqid()"/>
                 </div>
 
                 <div class=" flex items-center justify-center w-1/6">
-                    <livewire:delete-user :userId="$user->id" :key="'delete-user-' . $user->id"/>
+                    <livewire:delete-user :userId="$user->id" :key="'delete-user-' . uniqid()"/>
                 </div>
             </div>
         </div>

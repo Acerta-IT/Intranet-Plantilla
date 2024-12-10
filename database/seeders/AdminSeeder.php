@@ -26,5 +26,25 @@ class AdminSeeder extends Seeder
                 'password' => Hash::make('Qwerty1234!'),
             ]
         );
+        User::updateOrCreate(
+            ['email' => 'asd@acerta-intranet.com'],
+            [
+                'name' => 'Admin',
+                'surname' => 'User',
+                'department' => Departments::IT->value,
+                'role' => Role::Admin->value,
+                'password' => Hash::make('Qwerty1234!'),
+            ]
+        );
+        User::updateOrCreate(
+            ['email' => 'qwe@acerta-intranet.com'],
+            [
+                'name' => 'Admin',
+                'surname' => 'User',
+                'department' => Departments::IT->value,
+                'role' => Role::Admin->value,
+                'password' => Hash::make('Qwerty1234!'),
+            ]
+        );
     }
 }
