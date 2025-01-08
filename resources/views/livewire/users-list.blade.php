@@ -43,7 +43,7 @@
                 <p>{{ \App\Enums\Departments::tryFrom($user->department)?->label() ?? 'Unknown' }}</p>
             </div>
             <div class="w-1/6 text-center">
-                <p>{{ \App\Enums\Role::tryFrom($user->department)?->label() ?? 'Unknown' }}</p>
+                <p>{{ \App\Enums\Role::tryFrom($user->role)?->label() ?? 'Unknown' }}</p>
             </div>
             <div class="w-1/6 text-center flex justify-center">
 
