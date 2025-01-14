@@ -18,6 +18,6 @@ class Admin
         if (auth()->check() && auth()->user()->role === 1) {
             return $next($request);
         }
-        return redirect('/');
+        return redirect()->route(config('app.home_route'));
     }
 }

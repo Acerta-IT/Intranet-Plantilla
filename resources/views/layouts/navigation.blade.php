@@ -26,7 +26,7 @@
     <!-- Top content -->
     <div>
         <div class="flex justify-center mt-8">
-            <a href="{{ route('dashboard') }}">
+            <a href="{{ route(config('app.home_route')) }}">
                 <x-application-logo class="block h-20 fill-current text-gray-800 justify-center"/>
             </a>
         </div>
@@ -46,7 +46,7 @@
 
         <!-- Contenedor con scroll solo para los x-nav-link -->
         <div class="flex flex-col overflow-y-auto max-h-[60vh] select-none">
-            <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+            <x-nav-link :href="route(config('app.home_route'))" :active="request()->routeIs(config('app.home_route'))">
                 <x-slot name="icon">dashboard</x-slot>
                 Dashboard
             </x-nav-link>

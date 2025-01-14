@@ -10,7 +10,7 @@ use App\Http\Middleware\Admin;
 
 
 Route::middleware('auth')->group(function () {
-    Route::get('/', [DashboardController::class, '__invoke'])->name('dashboard');
+    Route::get('/', [DashboardController::class, '__invoke'])->name(config('app.home_route'));
 
     Route::middleware(Admin::class)->group(function () {
 
@@ -23,13 +23,13 @@ Route::middleware('auth')->group(function () {
 
     // Managing 404 errors
     Route::fallback(function() {
-        return redirect()->route('dashboard')->with('status', [
+        return redirect()->route(config('app.home_route'))->with('status', [
             'message' => 'Error 404: sitio no encontrado',
             'class' => 'toast-danger'
         ]);
     });
 
-    
+
 //    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
 //    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
 //    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

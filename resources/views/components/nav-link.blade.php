@@ -11,7 +11,7 @@
     - `icon` (string): The name of the Material Symbols icon to display alongside the link. Default: `''`.
 
     Usage Example:
-    <x-nav-link :active="request()->routeIs('dashboard')" level="2" icon="settings">
+    <x-nav-link :active="request()->routeIs(config('app.home_route'))" level="2" icon="settings">
         Dashboard
     </x-nav-link>
 --}}
